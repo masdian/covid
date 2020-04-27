@@ -460,7 +460,7 @@ Column {data-width=400}
 -------------------------------------
 
 
-### **Daftar negara berdasarkan tingkat kematian**
+### **Daftar negara berdasarkan kasus kematian**
     
 ```{r}
 dr <- data %>%
@@ -477,7 +477,7 @@ dr <- dr %>%
 dr <- dr %>%
   mutate(death_rate = round(death / confirmed *100, 2)) %>%
   filter(confirmed > 0) %>%
-  arrange(desc(death_rate)) 
+  arrange(desc(death)) 
 dr1 <- dr
 names(dr1) <- c("Negara", "Terkonfirmasi", "Meninggal", "Sembuh", "Tingkat Kematian (%)")
 
@@ -488,6 +488,8 @@ DT::datatable(dr1, options = list(lengthMenu = c(10, 20, 50, 100), pageLength = 
 
 ```{r}
 dr1 <- dr[1:15,]
+dr1 <- dr1 %>%
+  arrange(desc(death_rate))
 dr1$Country.Region <- factor(dr1$Country.Region, levels = dr1$Country.Region)
 plotly::plot_ly(
   data = dr1,
