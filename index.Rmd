@@ -484,7 +484,7 @@ names(dr1) <- c("Negara", "Terkonfirmasi", "Meninggal", "Sembuh", "Tingkat Kemat
 DT::datatable(dr1, options = list(lengthMenu = c(10, 20, 50, 100), pageLength = 10))
 ```
  
-### **Negara dengan tingkat kematian tertinggi**
+### **Tingkat kematian 15 negara dengan jumlah kematian tertinggi**
 
 ```{r}
 dr1 <- dr[1:15,]
