@@ -281,11 +281,11 @@ daily_confirmed %>%
  
 ### **Sebaran kasus berdasarkan tipe kasus**
 
-```{r daily_summary}
+```{r}
 db2 <- data %>%
   filter(Country.Region == "Malaysia" | Country.Region == "Indonesia" |
            Country.Region == "Singapore" | Country.Region == "Japan") %>%
-  filter(date == max(date))
+  filter(date == (max(date)-1))
 db2 <- db2 %>%
   mutate(unrecovered = confirmed - death -recovered,
          country = factor(Country.Region, levels = Country.Region))
@@ -414,7 +414,7 @@ for (i in 1 : nrow(dw)) {
 }
 
 dw <- filter(dw, date > "2020-02-15")
-plotly::plot_ly(data = dw) %>%
+plotly::plot_ly(data = dw[-nrow(dw),]) %>%
   plotly::add_trace(
     x = ~date,
     y = ~daily_con,
@@ -468,12 +468,12 @@ dr <- data %>%
 #dr$Country.Region <- fct_explicit_na(dr$Country.Region)
 dr <- dr %>%
   group_by(Country.Region) %>%
-  filter(date == max(date))
+  filter(date == (max(date)-1))
 dr <- dr %>%
   group_by(Country.Region) %>%
-  summarize(confirmed = sum(confirmed),
-            death = sum(death),
-            recovered = sum(recovered))
+  summarize(confirmed = sum(confirmed, na.rm = T),
+            death = sum(death, na.rm = T),
+            recovered = sum(recovered, na.rm = T))
 dr <- dr %>%
   mutate(death_rate = round(death / confirmed *100, 2)) %>%
   filter(confirmed > 0) %>%
