@@ -1,6 +1,6 @@
 ---
 title: "Coronavirus di Indonesia"
-author: "by U"
+author: "by Masdian"
 output:
   flexdashboard::flex_dashboard:
     orientation: rows
