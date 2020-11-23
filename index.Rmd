@@ -112,7 +112,7 @@ valueBox(
 
 ### recovered {.value-box}
 
-```{r}
+```{r recovered}
 valueBox(
   value = paste(format(db1$recovered, big.mark = " "), " (",
     round(100 * db1$recovered / db1$confirmed, 1),
@@ -146,7 +146,7 @@ Row
 
 ### **Akumulasi kasus harian** (Indonesia)
     
-```{r}
+```{r akumulasi kasus harian, echo=FALSE}
 plotly::plot_ly(data = db) %>%
   plotly::add_trace(
     x = ~date,
