@@ -468,7 +468,7 @@ dr <- data %>%
 #dr$Country.Region <- fct_explicit_na(dr$Country.Region)
 dr <- dr %>%
   group_by(Country.Region) %>%
-  filter(date == (max(date)-1))
+  filter(date == (max(date)))
 dr <- dr %>%
   group_by(Country.Region) %>%
   summarize(confirmed = sum(confirmed, na.rm = T),
