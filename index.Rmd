@@ -4,7 +4,7 @@ author: "by Masdian"
 output:
   flexdashboard::flex_dashboard:
     orientation: rows
-    source_code: embed
+    #source_code: embed
     vertical_layout: fill
   html_document:
     df_print: paged
