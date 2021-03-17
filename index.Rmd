@@ -408,6 +408,8 @@ dw$daily_rec <- 0
 for (i in 1 : nrow(dw)) {
   if (i == 1) {
     dw$daily_rec[i] <- 0
+  } else if ((dw$recovered[i] - dw$recovered[i - 1]) < 0) {
+    dw$daily_rec[i] <- dw$daily_rec[i - 1]
   } else {
     dw$daily_rec[i] <- dw$recovered[i] - dw$recovered[i - 1]
   }
